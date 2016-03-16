@@ -23,8 +23,17 @@ var Model = (function(){
     data.splice(data.indexOf(employee), 1);
   },
   update: function(employeeId, employee) {
-    var e = this.get(employeeId);
-    data[e.index] = employee;
+    var e = this.get(employeeId),
+    errObj = this.checkValidation(employee);
+    if(errObj.valid){
+      $.extend(data[e.index], employee);
+    } 
+    return errObj;
+  },
+  insert: function(employee){
+    //check if employee is correct
+    //if(validate()){}
+    data.push(employee);
   },
   get: function(employeeId) {
     for (var i = 0; i < data.length; i++) {
@@ -34,14 +43,19 @@ var Model = (function(){
           index: i
         };
       }
-      return null;
     }
+    return {};
+  },
+
+  checkValidation: function(e){
+    if(!e){
+      return {msg:'Something went terribly wrong!',valid:false};
+    } else if(!e.name){
+      return {msg:'Name can\'t be Null' ,valid:false};
+    } else if(!(e.extension && e.extension.length==4)){
+      return {msg:'Invalid extension' ,valid:false};
+    }
+    return {valid:true};
   }
+};
 })();
-
-
-
-/*var obj ={
-checkeverything:function(){ call this.checkname()},
-checkName
-}*/

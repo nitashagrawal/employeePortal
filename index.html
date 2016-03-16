@@ -16,6 +16,8 @@
           #chart_div table span {
             display: block;
             color: red;
+            width: 100%;
+            height: 100%;
           }
           </style>
         </head>
@@ -36,50 +38,48 @@
             <h2 align = "center">Employee Management System</h2>
           </div>
           <div id="chart_div"></div>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Employee Information</h4>
-            </div>
-            <div class="modal-body">
-              <form role="form">
-              <div class="form-group">
-                <label for="email">Name:</label>
-                <input type="text" class="form-control" id="name">
+          
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Employee Information</h4>
+                </div>
+                <div class="modal-body">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="email">Name:</label>
+                      <input id="name" type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="extn">Extension:</label>
+                      <input id="extension" type="text" class="form-control" id="extn">
+                    </div>
+                    <div class="form-group">
+                      <label for="extn">Role:</label>
+                      <select name="role" id="role">
+                        <option value="manager">Manager</option>
+                        <option value="individual">Individual</option>
+                        <option value="intern">Intern</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer">          
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
+                    <button type="button" class="btn btn-success" id="updateBtn">Update</button>
+                  </div>
+                </form> 
               </div>
-              <div class="form-group">
-                <label for="extn">Extension:</label>
-                <input type="text" class="form-control" id="extn">
-              </div>
-              <div class="form-group">
-                <label for="extn">Role:</label>
-                <select name="role">
-                  <option value="manager">Manager</option>
-                  <option value="individual">Individual</option>
-                  <option value="intern">Intern</option>
-              </select>
-              </div>
             </div>
-            <div class="modal-footer">          
-              <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-              <button type="button" class="btn btn-success">Save</button>
-            </div>
-          </form> 
           </div>
-        </div>
-      </div>
 
         </body>
 
         <!--  -->
-        <!-- SCRIPTS AT BOTTOM OF WEB PAGE FOR PERFORMANCE IMPROVEMENT / FASTER LOADING OF THE DOM ELEMENTS -->
+        <!-- SCRIPTS AT BOTTOM OF WEB PAGE FOR PERFORMANCE IMPROVEMENT  -->
         <!--  -->
         <script src="lib/js/jquery-1.12.1.min.js"></script>
         <script src="lib/js/bootstrap.min.js"></script>
@@ -92,4 +92,4 @@
         //View.darwOrganizationalChart();
         </script>
 
-      </html>
+        </html>

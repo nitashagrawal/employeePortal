@@ -1,30 +1,14 @@
-/*angular.module('starter.controllers', [])
-
-.controller('EmployeesCtrl', function($scope, Employees) {
-  $scope.employess = Employees.all();
-  $scope.remove = function(employee) {
-    Employees.remove(employee);
-  };
-})
-
-.controller('EmployeeCtrl', function($scope, Employees) {
-  $scope.get = function(employeeId) {
-    return Employees.get(employeeId);
-  };
-})*/
-
 var EmployeesCtrl = (function(){
+  var model= Model;
   return {
-    all:function(){
-      return Model.all();
-    }
-  };
-})();
-
-var EmployeeCtrl = (function(){
-  return {
-    get:function(employeeId) {
-      return Model.get(employeeId).data;
+    all: function(){
+      return model.all();
+    },
+    update: function(employeeId,employee){
+      return model.update(employeeId,employee);
+    },
+    get: function(employeeId) {
+      return model.get(employeeId).data;
     }
   };
 })();
