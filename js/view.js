@@ -1,27 +1,30 @@
 var View = (function(){
+
+	var self  = this;
 	var controller = EmployeesCtrl;
 	var selectHandler = function (resp){
-
 		if(event.target.tagName == "SPAN"){
-			var id = event.target.getAttribute("data-id"),
-			e = controller.get(id);
-			console.log(e);
-
-			var empid = e.id;
-			var empName = e.name;
-			var empExtension = e.extension;
-			var empRole = e.role;
-			var empReportsTo = e.reportsTo;
-
-			$("#myModal").attr('data-id',e.id);
-			$("#name").val(empName);
-			$("#extension").val(empExtension);
-			$('select>option[value='+ empRole.toLowerCase()+']').attr('selected', true);
-			$("#myModal").modal({"show":true});
+			populateModal(event.target.getAttribute("data-id"));
 		}
 	}
 
+	var populateModal = function(id){
+		var e = controller.get(id);
+		var empid = e.id;
+		var empName = e.name;
+		var empExtension = e.extension;
+		var empRole = e.role;
+		var empReportsTo = e.reportsTo;
+		$("#myModal").attr('data-id',e.id);
+		$("#name").val(empName);
+		$("#extension").val(empExtension);
+		$('select>option[value='+ empRole.toLowerCase()+']').attr('selected', true);
+		$("#myModal").modal({"show":true});
+	}
+
+
 	return {
+
 		d:function () {
 			var data = new google.visualization.DataTable(),
 			employeesData = controller.all();
@@ -54,17 +57,19 @@ var View = (function(){
     	var that = this;
     	
     	$("button#updateBtn").on('click', function(){
+    		var id = $("#myModal").attr('data-id');
     		var e = {};
     		e.name = $("#name").val();
     		e.extension = $("#extension").val();
     		e.role = $("select#role").val();
-    		var errObj = controller.update($("#myModal").attr('data-id'),e);
+    		var errObj = controller.update(id,e);
     		if(errObj.valid){
     			that.d();
     			$("#myModal").modal("hide");
     			return;
     		}
     		alert(errObj.msg);
+    		populateModal(id);
     	});
     }
 };
